@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -9,25 +9,18 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import CollapsedRow from "./CollapsedRow";
+import { Tab } from "@mui/material";
 
-function Row({ item }) {
-  console.log(item);
-  const [open, setOpen] = useState(false);
 
-  const formattAddress = (item) => {
-    return `${item.customer_address.street}, ${item.customer_address.city}, ${item.customer_address.state} ${item.customer_address.zip} `;
-  };
-
-  const showOrders = (item) => {
-    item.order_items.map((order) => {});
-  };
-
+const CollapsedRow = ({ item }) => {
+    const [open, setOpen] = useState(false)
   return (
-    <>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+    <div>
+      <TableRow>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -37,42 +30,37 @@ function Row({ item }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>{item.customer_first_name}</TableCell>
-        <TableCell align="right">{item.customer_last_name}</TableCell>
+        <TableCell component="th" scope="row">
+          {item.order_items.id}
+        </TableCell>
+        {/* <TableCell align="right">{item.customer_last_name}</TableCell>
         <TableCell align="right">{item.customer_id}</TableCell>
         <TableCell align="right">{item.order_id}</TableCell>
         <TableCell align="right">{item.order_amount}</TableCell>
-        <TableCell align="right">{item.order_date}</TableCell>
+        <TableCell align="right">{item.order_date}</TableCell> */}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Table>
+              <Typography variant="h6" gutterBottom component="div">
+                History
+              </Typography>
+              <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Customer Address</TableCell>
-                    <TableCell>Ordered Items</TableCell>
+                    <TableCell>Order Item id</TableCell>
+                    {/* <TableCell>Ordered Items</TableCell> */}
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  <TableCell>{formattAddress(item)}</TableCell>
-                  {/* <TableCell>{item.order_items.map(item => {
-                      <CollapsedRow item={item}/>
-                  })}</TableCell> */}
-                  <TableCell component="th" scope="row">
-                    {item.order_items.map((item) => {
-                      return item.name;
-                    })}
-                  </TableCell>
-                </TableBody>
+                <TableBody></TableBody>
               </Table>
             </Box>
           </Collapse>
         </TableCell>
       </TableRow>
-    </>
+    </div>
   );
-}
+};
 
-export default Row;
+export default CollapsedRow;

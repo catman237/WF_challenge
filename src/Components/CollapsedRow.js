@@ -17,6 +17,7 @@ import { Tab } from "@mui/material";
 
 
 const CollapsedRow = ({ item }) => {
+    console.log(item)
     const [open, setOpen] = useState(false)
   return (
     <div>
@@ -31,7 +32,7 @@ const CollapsedRow = ({ item }) => {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {item.order_items.id}
+          {item.name}
         </TableCell>
         {/* <TableCell align="right">{item.customer_last_name}</TableCell>
         <TableCell align="right">{item.customer_id}</TableCell>
@@ -44,16 +45,25 @@ const CollapsedRow = ({ item }) => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                History
+                Item Info
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Order Item id</TableCell>
-                    {/* <TableCell>Ordered Items</TableCell> */}
+                    <TableCell>Item ID</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>Price</TableCell>
+                    <TableCell>Quantity</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody></TableBody>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>{item.id}</TableCell>
+                        <TableCell>{item.description}</TableCell>
+                        <TableCell>{`$${item.price}`}</TableCell>
+                        <TableCell>{item.quantity}</TableCell>
+                    </TableRow>
+                </TableBody>
               </Table>
             </Box>
           </Collapse>

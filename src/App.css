@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5rem;
+}

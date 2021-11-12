@@ -20,3 +20,7 @@
 - "@mui/icons-material": "^5.1.0",
 - "@mui/material": "^5.1.0",
 - "@mui/styled-engine-sc": "^5.1.0",
+
+
+# Data
+Note that the date being used is located in the public folder of this application. 

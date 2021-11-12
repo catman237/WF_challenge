@@ -1,14 +1,15 @@
 import { useState } from "react";
-
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import {
+  Box,
+  Collapse,
+  Table,
+  TableBody,
+  Typography,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CollapsedRow from "./CollapsedRow";
@@ -21,9 +22,9 @@ function Row({ item }) {
   };
   const formatDate = (item) => {
     let date = new Date(item);
-    return date.toUTCString().split(" ").splice(0, 4).join(' ')
+    return date.toUTCString().split(" ").splice(0, 4).join(" ");
   };
-  
+
   return (
     <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -50,8 +51,14 @@ function Row({ item }) {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Customer Address</TableCell>
-                    <TableCell>Ordered Items</TableCell>
+                    <TableCell>
+                      <Typography fontWeight="bold">
+                        Customer Address
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography fontWeight="bold">Ordered Items</Typography>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

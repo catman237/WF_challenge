@@ -1,14 +1,15 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
+import {
+  Box,
+  Collapse,
+  Table,
+  TableBody,
+  Typography,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -34,16 +35,29 @@ const CollapsedRow = ({ item }) => {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
+              <Typography
+                variant="h6"
+                gutterBottom
+                component="div"
+                fontWeight="bold"
+              >
                 Item Info
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Item ID</TableCell>
-                    <TableCell>Description</TableCell>
-                    <TableCell>Price</TableCell>
-                    <TableCell>Quantity</TableCell>
+                    <TableCell>
+                      <Typography>Item ID</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>Description</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>Price</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>Quantity</Typography>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

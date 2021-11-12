@@ -1,14 +1,17 @@
 import { useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableFooter from "@mui/material/TableFooter";
+import {
+  Table,
+  TableBody,
+  Typography,
+  TableCell,
+  TableHead,
+  TableRow,
+  TablePagination,
+  TableContainer,
+  TableFooter,
+} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Row from "./Row";
-import { TablePagination } from "@mui/material";
 
 export default function CollapsibleTable({ items }) {
   const [page, setPage] = useState(0);
@@ -23,19 +26,46 @@ export default function CollapsibleTable({ items }) {
     setPage(0);
   };
 
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, items.length - page * rowsPerPage);
+
   return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+    <div className='mainContainer'>
+      <TableContainer component={Paper} sx={{ width: '90%' }}>
+        <Table aria-label="collapsible table" >
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>Curstomer First Name</TableCell>
-              <TableCell align="right">Customer Last Name</TableCell>
-              <TableCell align="right">Customer ID</TableCell>
-              <TableCell align="right">Order ID</TableCell>
-              <TableCell align="right">Order Amount</TableCell>
-              <TableCell align="right">Order Date</TableCell>
+              <TableCell>
+                <Typography fontSize="large" fontWeight="bold">
+                  Customer First Name
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontSize="large" fontWeight="bold">
+                  Customer Last Name
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontSize="large" fontWeight="bold">
+                  Customer ID
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontSize="large" fontWeight="bold">
+                  Order ID
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontSize="large" fontWeight="bold">
+                  Order Amount
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontSize="large" fontWeight="bold">
+                  Order Date
+                </Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,6 +74,11 @@ export default function CollapsibleTable({ items }) {
               .map((item) => {
                 return <Row item={item} />;
               })}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 74 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
         <TableFooter>
